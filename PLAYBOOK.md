@@ -45,7 +45,7 @@ and its **answer as a Story at 18:00 IST** the same day. Posted via Metricool
    - Short punchy `hook` matching the difficulty (e.g. Medium: "Can you get this in 10 sec?",
      Hard: "Most people get this wrong", Very Hard: "Only 2% get this right"), `prompt`,
      a `question`, and a 1–2 sentence `explanation`.
-3. `python3 gen.py <day>` → `posts/day<N>/reel.mp4` (8s animated: options pop in one by one, slow zoom; uses the approved `music.m4a` — never regenerate or change it unless Maaz asks), `cover.jpg`, `answer.png`.
+3. `python3 gen.py <day>` → `posts/day<N>/reel.mp4` (8s seamless loop: all options visible, a cute thinking cat animates beside the CTA; uses the approved `music.m4a` — never regenerate or change it unless Maaz asks), `cover.jpg`, `answer.png`.
    Look at `answer.png` to check nothing overflows.
 4. Commit and push to `main`. Public URLs:
    `https://raw.githubusercontent.com/maaz-azhar-9/themockit-posts/main/posts/day<N>/<file>`

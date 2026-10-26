@@ -109,54 +109,139 @@ def reel_layers(q):
     if diff:
         col = {"Medium": (46, 204, 113), "Hard": (255, 140, 0), "Very Hard": (255, 59, 92)}.get(diff, ACCENT)
         label = f"Difficulty: {diff}"
-        lf = font(42)
+        lf = font(38)
         lw = dd.textlength(label, font=lf)
-        dd.rounded_rectangle([(W - lw) / 2 - 36, 1290, (W + lw) / 2 + 36, 1370], 40, outline=col, width=4)
-        dd.text((W / 2, 1330), label, font=lf, fill=col, anchor="mm")
+        rx = RIGHT_X
+        dd.rounded_rectangle([rx - lw / 2 - 30, 1350, rx + lw / 2 + 30, 1424], 37, outline=col, width=4)
+        dd.text((rx, 1387), label, font=lf, fill=col, anchor="mm")
     cta, cd = _layer()
-    cd.text((W / 2, 1480), "Comment your answer below", font=font(56), fill=ACCENT, anchor="mm")
-    cd.text((W / 2, 1570), "Answer on our story at 6 PM", font=font(40, "Medium"), fill=MUTED, anchor="mm")
+    cd.text((RIGHT_X, 1505), "Comment your", font=font(54), fill=ACCENT, anchor="mm")
+    cd.text((RIGHT_X, 1572), "answer below!", font=font(54), fill=ACCENT, anchor="mm")
+    cd.text((RIGHT_X, 1655), "Answer on our story at 6 PM", font=font(32, "Medium"), fill=MUTED, anchor="mm")
     return bg, opts, diff_img, cta
 
 
-def _ease(p):
-    p = min(max(p, 0.0), 1.0)
-    return 1 - (1 - p) ** 3
+RIGHT_X = 700  # centre of the text block to the right of the cat
+CAT_BOX = (40, 1255, 470, 1760)  # area the cat + thought bubble occupy (left side)
 
 
-def _paste(frame, layer, p, dy=40):
-    """Fade + slide-up a layer; p in [0,1]."""
-    if p <= 0:
-        return
-    alpha = layer.getchannel("A").point(lambda a: int(a * p))
-    frame.paste(layer, (0, int((1 - p) * dy)), alpha)
+def draw_cat(t):
+    """Original cute ginger cat, paw on chin, thinking. Drawn 2x and downscaled.
+    All motions have periods dividing 8 s, so the reel loops seamlessly."""
+    import math
+    S = 2
+    bw, bh = CAT_BOX[2] - CAT_BOX[0], CAT_BOX[3] - CAT_BOX[1]
+    img = Image.new("RGBA", (bw * S, bh * S), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
 
+    def P(x, y):
+        return (x * S, y * S)
 
-# timeline (seconds): options pop in one by one, then difficulty, then CTA; slow zoom throughout
-TIMELINE = {"opts": [0.6, 1.0, 1.4, 1.8], "diff": 2.4, "cta": 3.0, "fade": 0.35, "zoom": 0.035}
+    def E(cx, cy, rx, ry, **kw):
+        d.ellipse([(cx - rx) * S, (cy - ry) * S, (cx + rx) * S, (cy + ry) * S], **kw)
+
+    FUR, DARK, CREAM = (247, 168, 84), (214, 120, 45), (255, 236, 210)
+    PINK, INK = (255, 150, 170), (40, 30, 35)
+    sway = math.sin(2 * math.pi * t / 4)          # head sway, 4 s
+    bob = math.sin(2 * math.pi * t / 2)           # bubble bob, 2 s
+    tap = max(0.0, math.sin(2 * math.pi * t / 1))  # paw tap, 1 s
+    cx, base_y = 205, 480
+
+    # tail: swishing curve behind body
+    ang = 0.35 * math.sin(2 * math.pi * t / 2)
+    pts = []
+    for k in range(13):
+        u = k / 12
+        x = cx + 95 + 70 * u + 40 * math.sin(u * 2.4 + ang * 2) * u
+        y = base_y - 30 - 150 * u + 30 * math.cos(u * 3 + ang) * u
+        pts.append(P(x, y))
+    d.line(pts, fill=DARK, width=30 * S, joint="curve")
+    E(pts[-1][0] / S, pts[-1][1] / S, 15, 15, fill=DARK)
+
+    # body
+    E(cx, base_y - 85, 115, 105, fill=FUR)
+    E(cx, base_y - 70, 70, 75, fill=CREAM)
+    # back feet
+    E(cx - 70, base_y - 8, 45, 22, fill=FUR)
+    E(cx + 70, base_y - 8, 45, 22, fill=FUR)
+
+    # head (sways a little)
+    hx, hy = cx + 6 * sway, 235 + 3 * abs(sway)
+    tilt = 7 * sway
+    for side in (-1, 1):  # ears
+        ex = hx + side * 62
+        d.polygon([P(ex - 38, hy - 30), P(ex + side * 18, hy - 120 + (tilt * side) * 0.6), P(ex + 40, hy - 40)], fill=FUR)
+        d.polygon([P(ex - 20, hy - 42), P(ex + side * 12, hy - 98 + (tilt * side) * 0.6), P(ex + 22, hy - 48)], fill=PINK)
+    E(hx, hy, 105, 88, fill=FUR)
+    for k in (-1, 0, 1):  # forehead stripes
+        d.line([P(hx + k * 22, hy - 86), P(hx + k * 16, hy - 56)], fill=DARK, width=8 * S)
+    E(hx, hy + 30, 52, 38, fill=CREAM)  # muzzle
+
+    # eyes: look up-right (thinking), blink at 1.8 s and 5.8 s
+    blink = any(abs(t - b) < 0.09 for b in (1.8, 5.8))
+    for side in (-1, 1):
+        ex, ey = hx + side * 40, hy - 8
+        if blink:
+            d.arc([P(ex - 18, ey - 6), P(ex + 18, ey + 14)], 200, 340, fill=INK, width=5 * S)
+        else:
+            E(ex, ey, 19, 23, fill=INK)
+            E(ex + 7, ey - 9, 7, 7, fill=(255, 255, 255))
+            E(ex - 5, ey + 7, 3, 3, fill=(255, 255, 255))
+    # nose + mouth (small "hmm")
+    d.polygon([P(hx - 9, hy + 14), P(hx + 9, hy + 14), P(hx, hy + 24)], fill=PINK)
+    d.arc([P(hx - 14, hy + 22), P(hx + 2, hy + 40)], 20, 160, fill=INK, width=4 * S)
+    d.arc([P(hx - 2, hy + 22), P(hx + 14, hy + 40)], 20, 160, fill=INK, width=4 * S)
+    # whiskers
+    for side in (-1, 1):
+        for k in (-1, 0, 1):
+            d.line([P(hx + side * 48, hy + 28 + k * 9), P(hx + side * 112, hy + 20 + k * 16)],
+                   fill=(255, 245, 235), width=3 * S)
+    # blush
+    E(hx - 62, hy + 30, 14, 8, fill=(255, 140, 140, 150))
+    E(hx + 62, hy + 30, 14, 8, fill=(255, 140, 140, 150))
+
+    # paw raised to chin, tapping
+    px, py = hx - 30, hy + 78 - 6 * tap
+    d.line([P(cx - 60, base_y - 120), P(px, py)], fill=FUR, width=46 * S)
+    E(px, py, 30, 26, fill=FUR)
+    for k in (-1, 0, 1):
+        d.line([P(px + k * 11, py - 22), P(px + k * 11, py - 10)], fill=DARK, width=3 * S)
+
+    # thought bubble (bobs), with a "?" that pulses
+    by = 70 + 8 * bob
+    E(hx + 105, hy - 92 + 4 * bob, 9, 9, fill=(255, 255, 255))
+    E(hx + 128, hy - 120 + 6 * bob, 14, 14, fill=(255, 255, 255))
+    bx = 345
+    E(bx, by, 72, 58, fill=(255, 255, 255))
+    E(bx - 45, by + 12, 38, 34, fill=(255, 255, 255))
+    E(bx + 45, by + 12, 38, 34, fill=(255, 255, 255))
+    q_size = int((70 + 8 * max(0.0, math.sin(2 * math.pi * t / 2))) * S)
+    d.text(P(bx, by + 4), "?", font=font(q_size // S * S), fill=BG, anchor="mm")
+
+    return img.resize((bw, bh), Image.LANCZOS)
 
 
 def reel_frame_at(layers, t, dur):
+    """Everything stays on screen (no pop-in), so the loop never 'resets';
+    only the cat, its bubble and a gentle CTA glow move."""
+    import math
     bg, opts, diff, cta = layers
     f = bg.copy()
-    T = TIMELINE
-    for i, start in enumerate(T["opts"]):
-        _paste(f, opts[i], _ease((t - start) / T["fade"]))
-    _paste(f, diff, _ease((t - T["diff"]) / T["fade"]), dy=20)
-    _paste(f, cta, _ease((t - T["cta"]) / T["fade"]))
-    z = 1 + T["zoom"] * (t / dur)
-    if z > 1.0005:
-        zw, zh = int(W * z), int(H * z)
-        big = f.resize((zw, zh), Image.BILINEAR)
-        l, tp = (zw - W) // 2, (zh - H) // 2
-        f = big.crop((l, tp, l + W, tp + H))
+    for o in opts:
+        f.paste(o, (0, 0), o)
+    f.paste(diff, (0, 0), diff)
+    # CTA breathes very slightly (period 2 s)
+    p = 0.85 + 0.15 * (0.5 + 0.5 * math.sin(2 * math.pi * t / 2))
+    f.paste(cta, (0, 0), cta.getchannel("A").point(lambda a: int(a * p)))
+    cat = draw_cat(t)
+    f.paste(cat, (CAT_BOX[0], CAT_BOX[1]), cat)
     return f
 
 
 def reel_frame(q):
     """Final fully-revealed frame (used as cover)."""
     layers = reel_layers(q)
-    return reel_frame_at(layers, 10.0, 10.0 * 1e9)
+    return reel_frame_at(layers, 0.5, 8.0)
 
 
 def answer_story(q):
