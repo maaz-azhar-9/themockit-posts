@@ -1,6 +1,6 @@
 # @themockit daily posting playbook
 
-Every day one reasoning/aptitude question goes out as an Instagram **Reel at 10:00 IST**,
+Every day one question (reasoning, maths, GK or current affairs) goes out as an Instagram **Reel at 10:00 IST**,
 and its **answer as a Story at 18:00 IST** the same day. Posted via Metricool
 (brand/blogId `7657981`, timezone `Asia/Calcutta`, network `instagram`).
 
@@ -8,19 +8,35 @@ and its **answer as a Story at 18:00 IST** the same day. Posted via Metricool
 1. Read `schedule.json`. If today's date (IST) is already listed, stop — nothing to do.
 2. Add a NEW question to `questions.json` with `day` = previous max + 1.
    - Original question (never copied from elsewhere), 4 options, exactly one correct.
-   - **Audience = general public**, not only SSC/UPSC aspirants. Use the kind of aptitude/
-     reasoning questions that appear across ALL exams (banking, railways, CAT, GMAT/GRE,
-     campus placements, interviews, olympiads) but that a smart non-aspirant can still solve
-     with logic alone — no syllabus knowledge, no GK, no formulas beyond school maths.
-   - Rotate types: number series, letter series, coding-decoding, odd one out, analogies,
-     quick maths tricks, age/ratio puzzles, clock/calendar, blood relations, direction sense,
-     logic riddles. Don't repeat the same type two days in a row.
+   - **Audience = general public**, not only SSC/UPSC aspirants. Questions should feel like
+     they could appear in any exam (banking, railways, CAT, placements, interviews, quizzes)
+     but a curious non-aspirant can still have a go.
+   - **Category** (add a `category` field) — rotate in this weekly order, then repeat:
+     Reasoning, GK, Maths, Current Affairs, Reasoning, GK, Current Affairs.
+     Look at the previous entry's category and take the next one in the cycle.
+     - *Reasoning*: series, coding-decoding, odd one out, analogies, blood relations,
+       direction sense, clock/calendar, logic riddles. Solvable by logic alone.
+     - *Maths*: quick aptitude — percentages, ages, ratios, speed, simple tricks. School maths.
+     - *GK*: well-known, stable facts (geography, science, history, India & world firsts,
+       sports records, inventions). Popular, not obscure trivia.
+     - *Current Affairs*: something from the **last 30 days** that made national/international
+       news (awards, sports results, space missions, appointments, major launches, records).
+       Find it with WebSearch and confirm the fact on at least 2 reliable sources (official
+       sites, PIB, major news outlets) before using it. Stick to neutral facts — never
+       party-political opinions, elections framing, religion or anything divisive.
+       If you cannot confirm a fact on 2 sources, switch to a GK question instead.
+   - For GK/Current Affairs use `prompt` "General Knowledge" / "Current Affairs", write the
+     full question in `question` (it wraps automatically), keep each option under ~16
+     characters, and in `explanation` give the fact in one line (add "as of <Month Year>"
+     for current affairs).
+   - Reasoning/Maths types: don't repeat the same sub-type two days in a row.
    - **`difficulty`**: rotate "Medium", "Hard", "Very Hard" so no two consecutive days match
      (look at the last 2 entries). Make the question genuinely match the label.
-   - Vary the position of the correct option. Verify the answer by working it out in code.
+   - Vary the position of the correct option. Verify Reasoning/Maths answers by working
+     them out in code; verify GK/Current Affairs answers with web sources.
    - Short punchy `hook` matching the difficulty (e.g. Medium: "Can you get this in 10 sec?",
      Hard: "Most people get this wrong", Very Hard: "Only 2% get this right"), `prompt`,
-     a one-line `question`, and a 1–2 sentence `explanation`.
+     a `question`, and a 1–2 sentence `explanation`.
 3. `python3 gen.py <day>` → `posts/day<N>/reel.mp4` (8s, uses the approved `music.m4a` — never regenerate or change it unless Maaz asks), `cover.jpg`, `answer.png`.
    Look at `answer.png` to check nothing overflows.
 4. Commit and push to `main`. Public URLs:

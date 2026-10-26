@@ -47,12 +47,28 @@ def base(q, d):
     d.text((W / 2, 340), q["hook"], font=fit(d, q["hook"], 66, W - 120), fill=WHITE, anchor="mm")
     d.text((W / 2, 420), q["prompt"], font=fit(d, q["prompt"], 40, W - 140, "Medium"), fill=MUTED, anchor="mm")
     d.rounded_rectangle([60, 490, W - 60, 760], 40, fill=CARD)
-    d.text((W / 2, 625), q["question"], font=fit(d, q["question"], 84, W - 200), fill=ACCENT, anchor="mm")
+    # short series fit on one big line; longer GK/current-affairs questions wrap to <=4 lines
+    one = fit(d, q["question"], 84, W - 200)
+    if one.size >= 60:
+        d.text((W / 2, 625), q["question"], font=one, fill=ACCENT, anchor="mm")
+    else:
+        size = 56
+        while True:
+            f = font(size)
+            lines = wrap(d, q["question"], f, W - 180)
+            if (len(lines) <= 4 and len(lines) * size * 1.25 <= 240) or size <= 30:
+                break
+            size -= 2
+        lh = size * 1.25
+        y = 625 - lh * (len(lines) - 1) / 2
+        for i, line in enumerate(lines):
+            d.text((W / 2, y + i * lh), line, font=f, fill=ACCENT, anchor="mm")
 
 
 def options(q, d, y0=830, highlight=None):
     bw, bh, gap = 450, 170, 60
     x0 = (W - (2 * bw + gap)) / 2
+    of = min((fit(d, str(v), 60, bw - 190) for v in q["options"]), key=lambda f: f.size)
     for i, v in enumerate(q["options"]):
         x = x0 + (i % 2) * (bw + gap)
         y = y0 + (i // 2) * (bh + 44)
@@ -62,7 +78,7 @@ def options(q, d, y0=830, highlight=None):
         cx, cy = x + 78, y + bh / 2
         d.ellipse([cx - 42, cy - 42, cx + 42, cy + 42], fill=GREEN if ok else ACCENT)
         d.text((cx, cy), "ABCD"[i], font=font(44), fill=BG, anchor="mm")
-        d.text((x + 165, cy), str(v), font=fit(d, str(v), 60, bw - 190), fill=WHITE, anchor="lm")
+        d.text((x + 165, cy), str(v), font=of, fill=WHITE, anchor="lm")
 
 
 def footer(d):

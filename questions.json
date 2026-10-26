@@ -12,7 +12,8 @@
     ],
     "answer": 1,
     "explanation": "Each term is doubled, then +1, +2, +3, +4, +5. So 90 x 2 + 5 = 185.",
-    "difficulty": "Hard"
+    "difficulty": "Hard",
+    "category": "Reasoning"
   },
   {
     "day": 2,
@@ -27,6 +28,7 @@
     ],
     "answer": 2,
     "explanation": "Squares of 1, 2, 3, 4... alternately +1 and -1: 1+1, 4-1, 9+1, 16-1, 25+1, 36-1, so 49+1 = 50.",
-    "difficulty": "Medium"
+    "difficulty": "Medium",
+    "category": "Reasoning"
   }
 ]
