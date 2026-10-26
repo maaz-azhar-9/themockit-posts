@@ -4,17 +4,29 @@
     "hook": "Only 2% get this right",
     "prompt": "Find the next number in the series",
     "question": "4,  9,  20,  43,  90,  ?",
-    "options": ["180", "185", "181", "190"],
+    "options": [
+      "180",
+      "185",
+      "181",
+      "190"
+    ],
     "answer": 1,
-    "explanation": "Each term is doubled, then +1, +2, +3, +4, +5. So 90 x 2 + 5 = 185."
+    "explanation": "Each term is doubled, then +1, +2, +3, +4, +5. So 90 x 2 + 5 = 185.",
+    "difficulty": "Hard"
   },
   {
     "day": 2,
     "hook": "Most people get this wrong",
     "prompt": "Find the next number in the series",
     "question": "2,  3,  10,  15,  26,  35,  ?",
-    "options": ["48", "49", "50", "51"],
+    "options": [
+      "48",
+      "49",
+      "50",
+      "51"
+    ],
     "answer": 2,
-    "explanation": "Squares of 1, 2, 3, 4... alternately +1 and -1: 1+1, 4-1, 9+1, 16-1, 25+1, 36-1, so 49+1 = 50."
+    "explanation": "Squares of 1, 2, 3, 4... alternately +1 and -1: 1+1, 4-1, 9+1, 16-1, 25+1, 36-1, so 49+1 = 50.",
+    "difficulty": "Medium"
   }
 ]

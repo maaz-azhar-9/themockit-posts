@@ -8,11 +8,19 @@ and its **answer as a Story at 18:00 IST** the same day. Posted via Metricool
 1. Read `schedule.json`. If today's date (IST) is already listed, stop — nothing to do.
 2. Add a NEW question to `questions.json` with `day` = previous max + 1.
    - Original question (never copied from elsewhere), 4 options, exactly one correct.
+   - **Audience = general public**, not only SSC/UPSC aspirants. Use the kind of aptitude/
+     reasoning questions that appear across ALL exams (banking, railways, CAT, GMAT/GRE,
+     campus placements, interviews, olympiads) but that a smart non-aspirant can still solve
+     with logic alone — no syllabus knowledge, no GK, no formulas beyond school maths.
    - Rotate types: number series, letter series, coding-decoding, odd one out, analogies,
-     simple maths tricks, blood relations, direction sense. Keep it solvable in ~10 sec.
+     quick maths tricks, age/ratio puzzles, clock/calendar, blood relations, direction sense,
+     logic riddles. Don't repeat the same type two days in a row.
+   - **`difficulty`**: rotate "Medium", "Hard", "Very Hard" so no two consecutive days match
+     (look at the last 2 entries). Make the question genuinely match the label.
    - Vary the position of the correct option. Verify the answer by working it out in code.
-   - Short punchy `hook` (e.g. "Only 2% get this right"), `prompt`, a one-line `question`
-     that fits on one line, and a 1–2 sentence `explanation`.
+   - Short punchy `hook` matching the difficulty (e.g. Medium: "Can you get this in 10 sec?",
+     Hard: "Most people get this wrong", Very Hard: "Only 2% get this right"), `prompt`,
+     a one-line `question`, and a 1–2 sentence `explanation`.
 3. `python3 gen.py <day>` → `posts/day<N>/reel.mp4` (8s, uses the approved `music.m4a` — never regenerate or change it unless Maaz asks), `cover.jpg`, `answer.png`.
    Look at `answer.png` to check nothing overflows.
 4. Commit and push to `main`. Public URLs:
@@ -38,8 +46,20 @@ Real practice before the real exam 💯
 
 🔗 Link in bio — try it today!
 
-#reasoning #reasoningtricks #mathspuzzle #brainteaser #iqtest #mocktest #ssc #sscgd
-#ssccgl #bankexam #ibpspo #rrbntpc #upsc #governmentjobs #competitiveexams
-#exampreparation #quiz #puzzle #studygram #themockit
+<hashtags — see below>
 ```
 Vary the opening line day to day so posts don't look copy-pasted.
+
+## Hashtags (15–20, different mix every day)
+1. Do 1–2 quick web searches for hashtags trending right now on Instagram in the
+   quiz / puzzle / brain teaser / exam prep / study niche (e.g. "trending instagram hashtags
+   quiz this week", "trending study hashtags instagram <month year>"). Take only ones that fit.
+2. Fill the rest from this pool, choosing tags that match today's question type:
+   - Broad: #quiz #puzzle #brainteaser #riddle #iqtest #braingames #logic #thinkfast
+     #challenge #canyousolveit #mindgames #funwithmaths #mathstricks #maths
+   - Reasoning: #reasoning #reasoningtricks #logicalreasoning #aptitude #quantitativeaptitude
+   - Exams (mix several, not all): #competitiveexams #exampreparation #mocktest #bankexam
+     #ssc #railway #catexam #placementprep #interviewprep #governmentjobs #upsc
+   - Study: #studygram #studymotivation #learneveryday #education
+3. Always end with #themockit. Never reuse yesterday's exact set (check the last caption in
+   Metricool with getScheduledPosts or the previous day's commit).

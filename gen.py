@@ -2,7 +2,7 @@
 
 Usage: python3 gen.py <day>
 Outputs in posts/day<N>/: reel.mp4 (1080x1920, 8s still), answer.png (story).
-Question entry fields: day, hook, prompt, question, options [4], answer (index 0-3), explanation.
+Question entry fields: day, difficulty (Medium/Hard/Very Hard), hook, prompt, question, options [4], answer (index 0-3), explanation.
 """
 import json, os, subprocess, sys, tempfile
 from PIL import Image, ImageDraw, ImageFont
@@ -75,6 +75,14 @@ def reel_frame(q):
     d = ImageDraw.Draw(img)
     base(q, d)
     options(q, d)
+    diff = q.get("difficulty")
+    if diff:
+        col = {"Medium": (46, 204, 113), "Hard": (255, 140, 0), "Very Hard": (255, 59, 92)}.get(diff, ACCENT)
+        label = f"Difficulty: {diff}"
+        lf = font(42)
+        lw = d.textlength(label, font=lf)
+        d.rounded_rectangle([(W - lw) / 2 - 36, 1290, (W + lw) / 2 + 36, 1370], 40, outline=col, width=4)
+        d.text((W / 2, 1330), label, font=lf, fill=col, anchor="mm")
     cy = 1480
     d.text((W / 2, cy), "Comment your answer below", font=font(56), fill=ACCENT, anchor="mm")
     d.text((W / 2, cy + 90), "Answer on our story at 6 PM", font=font(40, "Medium"), fill=MUTED, anchor="mm")
