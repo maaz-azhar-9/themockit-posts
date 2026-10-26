@@ -40,9 +40,9 @@ tick_lo = (rng.standard_normal(len(ct)) * 0.08 + np.sin(2 * np.pi * 1300 * ct)) 
 
 n_beats = int(DUR / beat) + 1
 for b in range(n_beats):
-    place(kick, b * beat, 0.55)
-    place(tick_hi if b % 2 == 0 else tick_lo, b * beat, 0.10)
-    place(tick_lo, b * beat + beat / 2, 0.06)
+    place(kick, b * beat, 0.35)
+    place(tick_hi if b % 2 == 0 else tick_lo, b * beat, 0.06)
+    place(tick_lo, b * beat + beat / 2, 0.035)
 
 # pulsing bass: A minor root / F, 16th-note gated saw, low-passed
 notes = [55.0, 55.0, 43.65, 49.0]  # A1, A1, F1, G1 per bar
@@ -68,9 +68,9 @@ mix[rs] += 0.08 * riser * (rt / 3) ** 2
 
 # master: fade in/out, normalize
 mix *= np.minimum(t / 0.05, 1) * np.minimum((DUR - t) / 0.6, 1)
-mix = lowpass(mix, 4500)
+mix = lowpass(mix, 3000)
 mix = np.tanh(mix * 0.8)
-mix = mix / np.abs(mix).max() * 0.75
+mix = mix / np.abs(mix).max() * 0.35  # background level
 pcm = (np.stack([mix, mix], 1) * 32767).astype(np.int16)
 
 wav = os.path.join(ROOT, "music.wav")
