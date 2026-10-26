@@ -1,7 +1,7 @@
 """Generate daily @themockit assets from questions.json.
 
 Usage: python3 gen.py <day>
-Outputs in posts/day<N>/: reel.mp4 (1080x1920, ~11s countdown), answer.png (story).
+Outputs in posts/day<N>/: reel.mp4 (1080x1920, 8s still), answer.png (story).
 Question entry fields: day, hook, prompt, question, options [4], answer (index 0-3), explanation.
 """
 import json, os, subprocess, sys, tempfile
@@ -70,20 +70,14 @@ def footer(d):
     d.text((W / 2, 1830), "@themockit", font=font(44), fill=ACCENT, anchor="mm")
 
 
-def reel_frame(q, sec):
+def reel_frame(q):
     img = Image.new("RGB", (W, H), BG)
     d = ImageDraw.Draw(img)
     base(q, d)
     options(q, d)
     cy = 1480
-    if sec > 0:
-        d.ellipse([W / 2 - 110, cy - 110, W / 2 + 110, cy + 110], outline=ACCENT, width=10)
-        d.text((W / 2, cy), str(sec), font=font(110), fill=WHITE, anchor="mm")
-        d.text((W / 2, cy + 170), "Can you solve it in time?", font=font(40, "Medium"), fill=MUTED, anchor="mm")
-    else:
-        d.text((W / 2, cy - 30), "TIME'S UP!", font=font(90), fill=ACCENT, anchor="mm")
-        d.text((W / 2, cy + 70), "Comment your answer below", font=font(48), fill=WHITE, anchor="mm")
-        d.text((W / 2, cy + 140), "Answer on our story tonight", font=font(38, "Medium"), fill=MUTED, anchor="mm")
+    d.text((W / 2, cy), "Comment your answer below", font=font(56), fill=ACCENT, anchor="mm")
+    d.text((W / 2, cy + 90), "Answer on our story at 6 PM", font=font(40, "Medium"), fill=MUTED, anchor="mm")
     footer(d)
     return img
 
@@ -108,22 +102,20 @@ def main(day):
     q = next(x for x in qs if x["day"] == day)
     out = os.path.join(ROOT, "posts", f"day{day}")
     os.makedirs(out, exist_ok=True)
+    frame = reel_frame(q)
+    frame.save(f"{out}/cover.jpg", quality=90)
     with tempfile.TemporaryDirectory() as tmp:
-        secs = list(range(10, -1, -1))
-        for i, s in enumerate(secs):
-            reel_frame(q, s).save(f"{tmp}/f{i:02d}.png")
-        # each countdown frame 1s, final frame 1.5s; silent audio track for IG compatibility
-        lst = os.path.join(tmp, "list.txt")
-        with open(lst, "w") as fh:
-            for i, s in enumerate(secs):
-                fh.write(f"file '{tmp}/f{i:02d}.png'\nduration {1.5 if s == 0 else 1}\n")
-            fh.write(f"file '{tmp}/f{len(secs)-1:02d}.png'\n")
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", lst,
-                        "-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo",
-                        "-vf", "fps=30,format=yuv420p", "-c:v", "libx264", "-preset", "veryfast",
-                        "-crf", "20", "-c:a", "aac", "-b:a", "128k", "-shortest", "-movflags", "+faststart",
+        frame.save(f"{tmp}/frame.png")
+        # 8s still video; music.m4a in repo root is used if present, else a silent track
+        music = os.path.join(ROOT, "music.m4a")
+        audio = ["-stream_loop", "-1", "-i", music] if os.path.exists(music) else \
+                ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-framerate", "30",
+                        "-i", f"{tmp}/frame.png", *audio, "-t", "8",
+                        "-vf", "format=yuv420p", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                        "-tune", "stillimage", "-af", "afade=t=out:st=7:d=1",
+                        "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart",
                         f"{out}/reel.mp4"], check=True)
-        reel_frame(q, 10).save(f"{out}/cover.jpg", quality=90)
     answer_story(q).save(f"{out}/answer.png")
     print(out)
 

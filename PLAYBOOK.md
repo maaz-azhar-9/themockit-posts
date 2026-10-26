@@ -29,7 +29,7 @@ and its **answer as a Story at 18:00 IST** the same day. Posted via Metricool
 <hook> 🧠
 
 <question> — what comes next?   (adapt wording to the question type)
-Drop your answer in the comments 👇 Answer on our story tonight!
+Drop your answer in the comments 👇 Answer on our story at 6 PM!
 
 Want to practice questions like this every day? 🚀
 themockit.com uses AI to build custom mock tests for any exam, subject or interview topic.
