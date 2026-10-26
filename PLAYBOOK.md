@@ -1,7 +1,7 @@
 # @themockit daily posting playbook
 
 Every day one reasoning/aptitude question goes out as an Instagram **Reel at 10:00 IST**,
-and its **answer as a Story at 20:00 IST** the same day. Posted via Metricool
+and its **answer as a Story at 18:00 IST** the same day. Posted via Metricool
 (brand/blogId `7657981`, timezone `Asia/Calcutta`, network `instagram`).
 
 ## Daily steps
@@ -20,7 +20,7 @@ and its **answer as a Story at 20:00 IST** the same day. Posted via Metricool
 5. Metricool `createScheduledPost`:
    - Reel at 10:00 today: media = reel.mp4 URL, `videoThumbnailUrl` = cover.jpg URL,
      `instagramData: {"type": "REEL", "showReelOnFeed": true}`, caption below.
-   - Story at 20:00 today: media = answer.png URL, `instagramData: {"type": "STORY"}`, no text.
+   - Story at 18:00 today: media = answer.png URL, `instagramData: {"type": "STORY"}`, no text.
    If it is already past 10:00, post the reel ~5 min from now instead.
 6. Append `{"date": "<YYYY-MM-DD>", "day": N}` to `schedule.json`, commit, push.
 
