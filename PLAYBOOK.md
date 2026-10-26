@@ -13,7 +13,7 @@ and its **answer as a Story at 18:00 IST** the same day. Posted via Metricool
    - Vary the position of the correct option. Verify the answer by working it out in code.
    - Short punchy `hook` (e.g. "Only 2% get this right"), `prompt`, a one-line `question`
      that fits on one line, and a 1–2 sentence `explanation`.
-3. `python3 gen.py <day>` → `posts/day<N>/reel.mp4`, `cover.jpg`, `answer.png`.
+3. `python3 gen.py <day>` → `posts/day<N>/reel.mp4` (8s, uses the approved `music.m4a` — never regenerate or change it unless Maaz asks), `cover.jpg`, `answer.png`.
    Look at `answer.png` to check nothing overflows.
 4. Commit and push to `main`. Public URLs:
    `https://raw.githubusercontent.com/maaz-azhar-9/themockit-posts/main/posts/day<N>/<file>`
