@@ -30,6 +30,14 @@ and its **answer as a Story at 18:00 IST** the same day. Posted via Metricool
      characters, and in `explanation` give the fact in one line (add "as of <Month Year>"
      for current affairs).
    - Reasoning/Maths types: don't repeat the same sub-type two days in a row.
+   - **Style: "looks halwa, but isn't."** Every question must look easy at first glance but
+     hide a trap, so people comment fast and many get it wrong. Techniques:
+     - include the obvious-but-wrong answer as one of the options (the "gut" answer);
+     - a pattern that seems simple (+2, x2) but switches or alternates;
+     - wording traps (e.g. "how many months have 28 days?", "a doctor's brother…");
+     - common misconceptions in GK (e.g. the famous-but-wrong answer as a distractor);
+     - maths where the quick mental shortcut gives the wrong result.
+     Still fair: one clearly correct answer that feels obvious once explained.
    - **`difficulty`**: rotate "Medium", "Hard", "Very Hard" so no two consecutive days match
      (look at the last 2 entries). Make the question genuinely match the label.
    - Vary the position of the correct option. Verify Reasoning/Maths answers by working
@@ -37,7 +45,7 @@ and its **answer as a Story at 18:00 IST** the same day. Posted via Metricool
    - Short punchy `hook` matching the difficulty (e.g. Medium: "Can you get this in 10 sec?",
      Hard: "Most people get this wrong", Very Hard: "Only 2% get this right"), `prompt`,
      a `question`, and a 1–2 sentence `explanation`.
-3. `python3 gen.py <day>` → `posts/day<N>/reel.mp4` (8s, uses the approved `music.m4a` — never regenerate or change it unless Maaz asks), `cover.jpg`, `answer.png`.
+3. `python3 gen.py <day>` → `posts/day<N>/reel.mp4` (8s animated: options pop in one by one, slow zoom; uses the approved `music.m4a` — never regenerate or change it unless Maaz asks), `cover.jpg`, `answer.png`.
    Look at `answer.png` to check nothing overflows.
 4. Commit and push to `main`. Public URLs:
    `https://raw.githubusercontent.com/maaz-azhar-9/themockit-posts/main/posts/day<N>/<file>`

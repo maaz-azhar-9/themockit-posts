@@ -1,7 +1,7 @@
 """Generate daily @themockit assets from questions.json.
 
 Usage: python3 gen.py <day>
-Outputs in posts/day<N>/: reel.mp4 (1080x1920, 8s still), answer.png (story).
+Outputs in posts/day<N>/: reel.mp4 (1080x1920, 8s animated), answer.png (story).
 Question entry fields: day, difficulty (Medium/Hard/Very Hard), hook, prompt, question, options [4], answer (index 0-3), explanation.
 """
 import json, os, subprocess, sys, tempfile
@@ -65,11 +65,13 @@ def base(q, d):
             d.text((W / 2, y + i * lh), line, font=f, fill=ACCENT, anchor="mm")
 
 
-def options(q, d, y0=830, highlight=None):
+def options(q, d, y0=830, highlight=None, only=None):
     bw, bh, gap = 450, 170, 60
     x0 = (W - (2 * bw + gap)) / 2
     of = min((fit(d, str(v), 60, bw - 190) for v in q["options"]), key=lambda f: f.size)
     for i, v in enumerate(q["options"]):
+        if only is not None and i != only:
+            continue
         x = x0 + (i % 2) * (bw + gap)
         y = y0 + (i // 2) * (bh + 44)
         ok = highlight == i
@@ -86,24 +88,75 @@ def footer(d):
     d.text((W / 2, 1830), "@themockit", font=font(44), fill=ACCENT, anchor="mm")
 
 
-def reel_frame(q):
-    img = Image.new("RGB", (W, H), BG)
-    d = ImageDraw.Draw(img)
+def _layer():
+    img = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    return img, ImageDraw.Draw(img)
+
+
+def reel_layers(q):
+    """Static background + separately animated layers (options, difficulty, CTA)."""
+    bg = Image.new("RGB", (W, H), BG)
+    d = ImageDraw.Draw(bg)
     base(q, d)
-    options(q, d)
+    footer(d)
+    opts = []
+    for i in range(4):
+        img, ld = _layer()
+        options(q, ld, only=i)
+        opts.append(img)
+    diff_img, dd = _layer()
     diff = q.get("difficulty")
     if diff:
         col = {"Medium": (46, 204, 113), "Hard": (255, 140, 0), "Very Hard": (255, 59, 92)}.get(diff, ACCENT)
         label = f"Difficulty: {diff}"
         lf = font(42)
-        lw = d.textlength(label, font=lf)
-        d.rounded_rectangle([(W - lw) / 2 - 36, 1290, (W + lw) / 2 + 36, 1370], 40, outline=col, width=4)
-        d.text((W / 2, 1330), label, font=lf, fill=col, anchor="mm")
-    cy = 1480
-    d.text((W / 2, cy), "Comment your answer below", font=font(56), fill=ACCENT, anchor="mm")
-    d.text((W / 2, cy + 90), "Answer on our story at 6 PM", font=font(40, "Medium"), fill=MUTED, anchor="mm")
-    footer(d)
-    return img
+        lw = dd.textlength(label, font=lf)
+        dd.rounded_rectangle([(W - lw) / 2 - 36, 1290, (W + lw) / 2 + 36, 1370], 40, outline=col, width=4)
+        dd.text((W / 2, 1330), label, font=lf, fill=col, anchor="mm")
+    cta, cd = _layer()
+    cd.text((W / 2, 1480), "Comment your answer below", font=font(56), fill=ACCENT, anchor="mm")
+    cd.text((W / 2, 1570), "Answer on our story at 6 PM", font=font(40, "Medium"), fill=MUTED, anchor="mm")
+    return bg, opts, diff_img, cta
+
+
+def _ease(p):
+    p = min(max(p, 0.0), 1.0)
+    return 1 - (1 - p) ** 3
+
+
+def _paste(frame, layer, p, dy=40):
+    """Fade + slide-up a layer; p in [0,1]."""
+    if p <= 0:
+        return
+    alpha = layer.getchannel("A").point(lambda a: int(a * p))
+    frame.paste(layer, (0, int((1 - p) * dy)), alpha)
+
+
+# timeline (seconds): options pop in one by one, then difficulty, then CTA; slow zoom throughout
+TIMELINE = {"opts": [0.6, 1.0, 1.4, 1.8], "diff": 2.4, "cta": 3.0, "fade": 0.35, "zoom": 0.035}
+
+
+def reel_frame_at(layers, t, dur):
+    bg, opts, diff, cta = layers
+    f = bg.copy()
+    T = TIMELINE
+    for i, start in enumerate(T["opts"]):
+        _paste(f, opts[i], _ease((t - start) / T["fade"]))
+    _paste(f, diff, _ease((t - T["diff"]) / T["fade"]), dy=20)
+    _paste(f, cta, _ease((t - T["cta"]) / T["fade"]))
+    z = 1 + T["zoom"] * (t / dur)
+    if z > 1.0005:
+        zw, zh = int(W * z), int(H * z)
+        big = f.resize((zw, zh), Image.BILINEAR)
+        l, tp = (zw - W) // 2, (zh - H) // 2
+        f = big.crop((l, tp, l + W, tp + H))
+    return f
+
+
+def reel_frame(q):
+    """Final fully-revealed frame (used as cover)."""
+    layers = reel_layers(q)
+    return reel_frame_at(layers, 10.0, 10.0 * 1e9)
 
 
 def answer_story(q):
@@ -126,20 +179,24 @@ def main(day):
     q = next(x for x in qs if x["day"] == day)
     out = os.path.join(ROOT, "posts", f"day{day}")
     os.makedirs(out, exist_ok=True)
-    frame = reel_frame(q)
-    frame.save(f"{out}/cover.jpg", quality=90)
-    with tempfile.TemporaryDirectory() as tmp:
-        frame.save(f"{tmp}/frame.png")
-        # 8s still video; music.m4a in repo root is used if present, else a silent track
-        music = os.path.join(ROOT, "music.m4a")
-        audio = ["-stream_loop", "-1", "-i", music] if os.path.exists(music) else \
-                ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
-        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-loop", "1", "-framerate", "30",
-                        "-i", f"{tmp}/frame.png", *audio, "-t", "8",
-                        "-vf", "format=yuv420p", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
-                        "-tune", "stillimage", "-af", "afade=t=out:st=7:d=1",
-                        "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart",
-                        f"{out}/reel.mp4"], check=True)
+    reel_frame(q).save(f"{out}/cover.jpg", quality=90)
+    layers = reel_layers(q)
+    dur, fps = 8.0, 30
+    # music.m4a in repo root is used if present, else a silent track
+    music = os.path.join(ROOT, "music.m4a")
+    audio = ["-stream_loop", "-1", "-i", music] if os.path.exists(music) else \
+            ["-f", "lavfi", "-i", "anullsrc=r=44100:cl=stereo"]
+    proc = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error",
+                             "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(fps), "-i", "-",
+                             *audio, "-t", str(dur), "-map", "0:v", "-map", "1:a",
+                             "-vf", "format=yuv420p", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
+                             "-af", "afade=t=out:st=7:d=1", "-c:a", "aac", "-b:a", "128k",
+                             "-movflags", "+faststart", f"{out}/reel.mp4"], stdin=subprocess.PIPE)
+    for n in range(int(dur * fps)):
+        proc.stdin.write(reel_frame_at(layers, n / fps, dur).tobytes())
+    proc.stdin.close()
+    if proc.wait() != 0:
+        raise SystemExit("ffmpeg failed")
     answer_story(q).save(f"{out}/answer.png")
     print(out)
 
