@@ -73,7 +73,9 @@ Vary the opening line day to day so posts don't look copy-pasted.
 2. Fill the rest from this pool, choosing tags that match today's question type:
    - Broad: #quiz #puzzle #brainteaser #riddle #iqtest #braingames #logic #thinkfast
      #challenge #canyousolveit #mindgames #funwithmaths #mathstricks #maths
-   - Reasoning: #reasoning #reasoningtricks #logicalreasoning #aptitude #quantitativeaptitude
+   - Reasoning / Maths: #reasoning #reasoningtricks #logicalreasoning #aptitude #quantitativeaptitude
+   - GK / Current Affairs: #gk #generalknowledge #gkquiz #gkquestions #currentaffairs
+     #currentaffairs2026 #dailyquiz #triviatime #knowledge #didyouknow
    - Exams (mix several, not all): #competitiveexams #exampreparation #mocktest #bankexam
      #ssc #railway #catexam #placementprep #interviewprep #governmentjobs #upsc
    - Study: #studygram #studymotivation #learneveryday #education
