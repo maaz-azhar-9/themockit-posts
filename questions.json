@@ -30,5 +30,21 @@
     "explanation": "Squares of 1, 2, 3, 4... alternately +1 and -1: 1+1, 4-1, 9+1, 16-1, 25+1, 36-1, so 49+1 = 50.",
     "difficulty": "Medium",
     "category": "Reasoning"
+  },
+  {
+    "day": 3,
+    "hook": "Only 2% get this right",
+    "prompt": "General Knowledge",
+    "question": "Which country has the MOST time zones in the world?",
+    "options": [
+      "Russia",
+      "USA",
+      "China",
+      "France"
+    ],
+    "answer": 3,
+    "explanation": "France! Thanks to its overseas territories it spans 12 time zones (13 with its Antarctic claim). Russia has 11.",
+    "difficulty": "Very Hard",
+    "category": "GK"
   }
 ]
