@@ -62,5 +62,21 @@
     "explanation": "Not 45! You spend twice as long at 30 km/h. For 60 km each way: 120 km in 2 + 1 = 3 hours, so 120 / 3 = 40 km/h.",
     "difficulty": "Hard",
     "category": "Maths"
+  },
+  {
+    "day": 5,
+    "hook": "Can you get this in 10 sec?",
+    "prompt": "Current Affairs",
+    "question": "The 2026 Physics Nobel went to Francis Halzen for the IceCube neutrino observatory. Where is IceCube built?",
+    "options": [
+      "Iceland",
+      "North Pole",
+      "South Pole",
+      "Greenland"
+    ],
+    "answer": 2,
+    "explanation": "South Pole! IceCube is buried deep in the Antarctic ice at the South Pole. Halzen won the Physics Nobel as of October 2026.",
+    "difficulty": "Medium",
+    "category": "Current Affairs"
   }
 ]
