@@ -78,5 +78,21 @@
     "explanation": "South Pole! IceCube is buried deep in the Antarctic ice at the South Pole. Halzen won the Physics Nobel as of October 2026.",
     "difficulty": "Medium",
     "category": "Current Affairs"
+  },
+  {
+    "day": 6,
+    "hook": "Only 2% get this right",
+    "prompt": "Clock Reasoning",
+    "question": "In one full day (24 hours), how many times do the hour and minute hands of a clock make a right angle?",
+    "options": [
+      "48",
+      "44",
+      "24",
+      "96"
+    ],
+    "answer": 1,
+    "explanation": "Not 48! The hands make 90° 22 times every 12 hours (the 3 and 9 o'clock moments are shared), so 22 x 2 = 44 in a day.",
+    "difficulty": "Very Hard",
+    "category": "Reasoning"
   }
 ]
