@@ -94,5 +94,21 @@
     "explanation": "Not 48! The hands make 90° 22 times every 12 hours (the 3 and 9 o'clock moments are shared), so 22 x 2 = 44 in a day.",
     "difficulty": "Very Hard",
     "category": "Reasoning"
+  },
+  {
+    "day": 7,
+    "hook": "Most people get this wrong",
+    "prompt": "General Knowledge",
+    "question": "Which is the HOTTEST planet in our Solar System?",
+    "options": [
+      "Mercury",
+      "Mars",
+      "Jupiter",
+      "Venus"
+    ],
+    "answer": 3,
+    "explanation": "Venus, not Mercury! Its thick carbon dioxide atmosphere traps heat, keeping the surface around 465°C, even though Mercury is closer to the Sun.",
+    "difficulty": "Hard",
+    "category": "GK"
   }
 ]
