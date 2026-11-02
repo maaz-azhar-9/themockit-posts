@@ -110,5 +110,21 @@
     "explanation": "Venus, not Mercury! Its thick carbon dioxide atmosphere traps heat, keeping the surface around 465°C, even though Mercury is closer to the Sun.",
     "difficulty": "Hard",
     "category": "GK"
+  },
+  {
+    "day": 8,
+    "hook": "Can you get this in 10 sec?",
+    "prompt": "Current Affairs",
+    "question": "Anne Carson just won the 2026 Nobel Prize in Literature. Which country is she from?",
+    "options": [
+      "Canada",
+      "USA",
+      "UK",
+      "Greece"
+    ],
+    "answer": 0,
+    "explanation": "Canada! Anne Carson is a Canadian poet who reworks Greek classics, so many guess Greece. Literature Nobel, as of October 2026.",
+    "difficulty": "Medium",
+    "category": "Current Affairs"
   }
 ]
