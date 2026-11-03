@@ -126,5 +126,21 @@
     "explanation": "Canada! Anne Carson is a Canadian poet who reworks Greek classics, so many guess Greece. Literature Nobel, as of October 2026.",
     "difficulty": "Medium",
     "category": "Current Affairs"
+  },
+  {
+    "day": 9,
+    "hook": "Only 2% get this right",
+    "prompt": "Coding-Decoding",
+    "question": "If TREE is written as UPHA, how is LEAF written in that code?",
+    "options": [
+      "MDBE",
+      "MCDA",
+      "MCDB",
+      "NCDB"
+    ],
+    "answer": 2,
+    "explanation": "Not ±1! The shifts are +1, -2, +3, -4 (T>U, R>P, E>H, E>A). So L+1=M, E-2=C, A+3=D, F-4=B = MCDB.",
+    "difficulty": "Very Hard",
+    "category": "Reasoning"
   }
 ]
