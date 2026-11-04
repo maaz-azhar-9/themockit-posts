@@ -142,5 +142,21 @@
     "explanation": "Not ±1! The shifts are +1, -2, +3, -4 (T>U, R>P, E>H, E>A). So L+1=M, E-2=C, A+3=D, F-4=B = MCDB.",
     "difficulty": "Very Hard",
     "category": "Reasoning"
+  },
+  {
+    "day": 10,
+    "hook": "9 out of 10 say the wrong one",
+    "prompt": "General Knowledge",
+    "question": "Which is the LARGEST desert in the world?",
+    "options": [
+      "Sahara",
+      "Antarctica",
+      "Gobi",
+      "Arabian"
+    ],
+    "answer": 1,
+    "explanation": "Antarctica, not the Sahara! A desert is about very low rainfall, not heat. Antarctica (about 14 million km²) is a cold desert, Sahara is only the largest hot one.",
+    "difficulty": "Hard",
+    "category": "GK"
   }
 ]
