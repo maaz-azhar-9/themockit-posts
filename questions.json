@@ -158,5 +158,21 @@
     "explanation": "Antarctica, not the Sahara! A desert is about very low rainfall, not heat. Antarctica (about 14 million km²) is a cold desert, Sahara is only the largest hot one.",
     "difficulty": "Hard",
     "category": "GK"
+  },
+  {
+    "day": 11,
+    "hook": "Can you get this in 10 sec?",
+    "prompt": "Quick Maths",
+    "question": "A ₹400 pair of shoes gets a 25% price hike, then a 25% discount. What is the final price?",
+    "options": [
+      "₹400",
+      "₹425",
+      "₹350",
+      "₹375"
+    ],
+    "answer": 3,
+    "explanation": "Not back to ₹400! +25% makes it ₹500, and 25% off ₹500 is ₹125, so the final price is ₹375.",
+    "difficulty": "Medium",
+    "category": "Maths"
   }
 ]
