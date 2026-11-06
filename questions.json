@@ -174,5 +174,21 @@
     "explanation": "Not back to ₹400! +25% makes it ₹500, and 25% off ₹500 is ₹125, so the final price is ₹375.",
     "difficulty": "Medium",
     "category": "Maths"
+  },
+  {
+    "day": 12,
+    "hook": "Only 1 in 50 gets this right",
+    "prompt": "Current Affairs",
+    "question": "PV Sindhu and Lakshya Sen both just won the 2026 Hylo Open badminton titles. In which country was it held?",
+    "options": [
+      "Denmark",
+      "Indonesia",
+      "Germany",
+      "France"
+    ],
+    "answer": 2,
+    "explanation": "Germany! The Hylo Open (BWF Super 500) was played in Saarbrücken. Sindhu beat a Dane and Lakshya an Indonesian in the finals, as of November 2026.",
+    "difficulty": "Very Hard",
+    "category": "Current Affairs"
   }
 ]
