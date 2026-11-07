@@ -190,5 +190,21 @@
     "explanation": "Germany! The Hylo Open (BWF Super 500) was played in Saarbrücken. Sindhu beat a Dane and Lakshya an Indonesian in the finals, as of November 2026.",
     "difficulty": "Very Hard",
     "category": "Current Affairs"
+  },
+  {
+    "day": 13,
+    "hook": "Most people get this wrong",
+    "prompt": "Blood Relation",
+    "question": "Pointing to a boy in a photo, Aman says: \"His mother is the only daughter of my mother.\" How is the boy related to Aman?",
+    "options": [
+      "Nephew",
+      "Son",
+      "Brother",
+      "Cousin"
+    ],
+    "answer": 0,
+    "explanation": "Not his son! Aman is male, so the only daughter of his mother is his sister. The boy's mother is Aman's sister, so the boy is Aman's nephew.",
+    "difficulty": "Hard",
+    "category": "Reasoning"
   }
 ]
