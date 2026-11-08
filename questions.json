@@ -206,5 +206,21 @@
     "explanation": "Not his son! Aman is male, so the only daughter of his mother is his sister. The boy's mother is Aman's sister, so the boy is Aman's nephew.",
     "difficulty": "Hard",
     "category": "Reasoning"
+  },
+  {
+    "day": 14,
+    "hook": "Can you get this in 10 sec?",
+    "prompt": "General Knowledge",
+    "question": "An aeroplane's \"black box\" (flight recorder) is actually painted which colour?",
+    "options": [
+      "Black",
+      "Orange",
+      "Silver",
+      "Red"
+    ],
+    "answer": 1,
+    "explanation": "Orange, not black! Flight recorders are painted bright orange so search teams can spot them easily in wreckage or water.",
+    "difficulty": "Medium",
+    "category": "GK"
   }
 ]
