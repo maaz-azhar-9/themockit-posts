@@ -222,5 +222,21 @@
     "explanation": "Orange, not black! Flight recorders are painted bright orange so search teams can spot them easily in wreckage or water.",
     "difficulty": "Medium",
     "category": "GK"
+  },
+  {
+    "day": 15,
+    "hook": "Only 2% get this right",
+    "prompt": "Current Affairs",
+    "question": "India just won a record 6th men's Asian Champions Trophy in hockey. Whom did they beat in the final?",
+    "options": [
+      "Pakistan",
+      "China",
+      "South Korea",
+      "Japan"
+    ],
+    "answer": 3,
+    "explanation": "Japan! India beat Japan 4-1 in the final at Mohali on 5 Nov (they thrashed South Korea 8-1 in the semis; China was the 2024 final). Third title in a row, as of November 2026.",
+    "difficulty": "Very Hard",
+    "category": "Current Affairs"
   }
 ]
