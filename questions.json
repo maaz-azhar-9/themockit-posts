@@ -238,5 +238,21 @@
     "explanation": "Japan! India beat Japan 4-1 in the final at Mohali on 5 Nov (they thrashed South Korea 8-1 in the semis; China was the 2024 final). Third title in a row, as of November 2026.",
     "difficulty": "Very Hard",
     "category": "Current Affairs"
+  },
+  {
+    "day": 16,
+    "category": "Reasoning",
+    "difficulty": "Hard",
+    "hook": "Most people get this wrong",
+    "prompt": "Direction Sense",
+    "question": "Riya walks 6 km North, turns right and walks 4 km, turns right again and walks 6 km, then turns left and walks 3 km. How far is she from her starting point?",
+    "options": [
+      "1 km",
+      "10 km",
+      "7 km",
+      "4 km"
+    ],
+    "answer": 2,
+    "explanation": "7 km, not 1! The two 6 km legs cancel out. After the second right she faces South, so a left turn points her East again: 4 + 3 = 7 km East of the start."
   }
 ]
