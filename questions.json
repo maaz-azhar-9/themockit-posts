@@ -254,5 +254,21 @@
     ],
     "answer": 2,
     "explanation": "7 km, not 1! The two 6 km legs cancel out. After the second right she faces South, so a left turn points her East again: 4 + 3 = 7 km East of the start."
+  },
+  {
+    "day": 17,
+    "category": "GK",
+    "difficulty": "Medium",
+    "hook": "Can you get this in 10 sec?",
+    "prompt": "General Knowledge",
+    "question": "Which is the LARGEST organ of the human body?",
+    "options": [
+      "Skin",
+      "Liver",
+      "Brain",
+      "Lungs"
+    ],
+    "answer": 0,
+    "explanation": "Skin, not the liver! The liver is the largest INTERNAL organ, but your skin is about 15% of your body weight and covers nearly 2 square metres."
   }
 ]
