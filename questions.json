@@ -270,5 +270,21 @@
     ],
     "answer": 0,
     "explanation": "Skin, not the liver! The liver is the largest INTERNAL organ, but your skin is about 15% of your body weight and covers nearly 2 square metres."
+  },
+  {
+    "day": 18,
+    "category": "Maths",
+    "difficulty": "Very Hard",
+    "hook": "Only 2% get this right",
+    "prompt": "Quick Maths",
+    "question": "30 kg of fresh tomatoes are 95% water. After drying in the sun, they are 90% water. What do they weigh now?",
+    "options": [
+      "27 kg",
+      "28.5 kg",
+      "15 kg",
+      "20 kg"
+    ],
+    "answer": 2,
+    "explanation": "Just 15 kg! The solid part stays 5% of 30 = 1.5 kg. After drying, that 1.5 kg is 10% of the weight, so the total is 1.5 / 0.10 = 15 kg."
   }
 ]
