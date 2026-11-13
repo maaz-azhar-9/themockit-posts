@@ -286,5 +286,21 @@
     ],
     "answer": 2,
     "explanation": "Just 15 kg! The solid part stays 5% of 30 = 1.5 kg. After drying, that 1.5 kg is 10% of the weight, so the total is 1.5 / 0.10 = 15 kg."
+  },
+  {
+    "day": 19,
+    "category": "Current Affairs",
+    "difficulty": "Hard",
+    "hook": "Most people get this wrong",
+    "prompt": "Current Affairs",
+    "question": "M. John Harrison, 81, just won the 2026 Booker Prize. He made history as the FIRST Booker winner from which genre?",
+    "options": [
+      "Historical",
+      "Crime thriller",
+      "Poetry",
+      "Science fiction"
+    ],
+    "answer": 3,
+    "explanation": "Science fiction! Harrison won for 'The End of Everything' - the first sci-fi writer and the oldest ever to win the Booker (as of November 2026)."
   }
 ]
