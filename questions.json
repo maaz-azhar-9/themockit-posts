@@ -302,5 +302,21 @@
     ],
     "answer": 3,
     "explanation": "Science fiction! Harrison won for 'The End of Everything' - the first sci-fi writer and the oldest ever to win the Booker (as of November 2026)."
+  },
+  {
+    "day": 20,
+    "category": "Reasoning",
+    "difficulty": "Medium",
+    "hook": "Can you get this in 10 sec?",
+    "prompt": "Calendar Reasoning",
+    "question": "If the day before yesterday was Thursday, what day will it be the day after tomorrow?",
+    "options": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Friday"
+    ],
+    "answer": 1,
+    "explanation": "Monday, not Sunday! Day before yesterday = Thursday, so today is Saturday. Day after tomorrow = Saturday + 2 = Monday."
   }
 ]
