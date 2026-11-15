@@ -318,5 +318,21 @@
     ],
     "answer": 1,
     "explanation": "Monday, not Sunday! Day before yesterday = Thursday, so today is Saturday. Day after tomorrow = Saturday + 2 = Monday."
+  },
+  {
+    "day": 21,
+    "category": "GK",
+    "difficulty": "Very Hard",
+    "hook": "Only 2% get this right",
+    "prompt": "General Knowledge",
+    "question": "Which country has the MOST time zones in the world (counting all its territories)?",
+    "options": [
+      "Russia",
+      "USA",
+      "France",
+      "China"
+    ],
+    "answer": 2,
+    "explanation": "France, not Russia! Thanks to overseas territories like French Polynesia, Réunion and New Caledonia, France spans 12 time zones; Russia and the USA have 11 each."
   }
 ]
