@@ -350,5 +350,21 @@
     ],
     "answer": 1,
     "explanation": "Nobody! No athlete got the Khel Ratna 2025, a first since 2014. Divya Deshmukh & Tejaswin Shankar won Arjuna Awards (as of November 2026)."
+  },
+  {
+    "day": 23,
+    "category": "Reasoning",
+    "difficulty": "Medium",
+    "hook": "Can you get this in 10 sec?",
+    "prompt": "Find the next number in the series",
+    "question": "5,  10,  8,  16,  14,  28,  ?",
+    "options": [
+      "56",
+      "30",
+      "42",
+      "26"
+    ],
+    "answer": 3,
+    "explanation": "26, not 56! The pattern alternates: x2, then -2. So 5, 10, 8, 16, 14, 28 and next comes 28 - 2 = 26."
   }
 ]
