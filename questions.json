@@ -366,5 +366,21 @@
     ],
     "answer": 3,
     "explanation": "26, not 56! The pattern alternates: x2, then -2. So 5, 10, 8, 16, 14, 28 and next comes 28 - 2 = 26."
+  },
+  {
+    "day": 24,
+    "category": "GK",
+    "difficulty": "Very Hard",
+    "hook": "Only 2% get this right",
+    "prompt": "General Knowledge",
+    "question": "Measured from its base to its peak, which is the TALLEST mountain on Earth?",
+    "options": [
+      "Mauna Kea",
+      "Mount Everest",
+      "K2",
+      "Kilimanjaro"
+    ],
+    "answer": 0,
+    "explanation": "Mauna Kea, not Everest! This Hawaiian volcano rises about 10,200 m from its base on the ocean floor. Everest (8,849 m) is only the HIGHEST above sea level."
   }
 ]
