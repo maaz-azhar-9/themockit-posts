@@ -382,5 +382,21 @@
     ],
     "answer": 0,
     "explanation": "Mauna Kea, not Everest! This Hawaiian volcano rises about 10,200 m from its base on the ocean floor. Everest (8,849 m) is only the HIGHEST above sea level."
+  },
+  {
+    "day": 25,
+    "category": "Maths",
+    "difficulty": "Hard",
+    "hook": "Most people get this wrong",
+    "prompt": "Quick Maths",
+    "question": "You drive to a city at 60 km/h and return on the same road at 40 km/h. What is your average speed for the whole trip?",
+    "options": [
+      "50 km/h",
+      "52 km/h",
+      "48 km/h",
+      "45 km/h"
+    ],
+    "answer": 2,
+    "explanation": "Not 50! You spend more time at the slower speed. For 120 km each way: 2 h + 3 h = 5 h for 240 km, so 240 / 5 = 48 km/h."
   }
 ]
