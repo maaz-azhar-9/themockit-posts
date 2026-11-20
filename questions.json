@@ -398,5 +398,21 @@
     ],
     "answer": 2,
     "explanation": "Not 50! You spend more time at the slower speed. For 120 km each way: 2 h + 3 h = 5 h for 240 km, so 240 / 5 = 48 km/h."
+  },
+  {
+    "day": 26,
+    "category": "Current Affairs",
+    "difficulty": "Medium",
+    "hook": "Can you get this in 10 sec?",
+    "prompt": "Current Affairs",
+    "question": "Prince William's Earthshot Prize, called the 'Eco Oscars', just held its 2026 awards in India. In which city?",
+    "options": [
+      "New Delhi",
+      "Mumbai",
+      "Bengaluru",
+      "Goa"
+    ],
+    "answer": 1,
+    "explanation": "Mumbai, not Delhi! The 2026 Earthshot Prize awards were held in Mumbai, and India's Mahindra Last Mile Mobility was one of the five winners (as of November 2026)."
   }
 ]
