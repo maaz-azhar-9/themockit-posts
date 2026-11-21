@@ -414,5 +414,21 @@
     ],
     "answer": 1,
     "explanation": "Mumbai, not Delhi! The 2026 Earthshot Prize awards were held in Mumbai, and India's Mahindra Last Mile Mobility was one of the five winners (as of November 2026)."
+  },
+  {
+    "day": 27,
+    "category": "Reasoning",
+    "difficulty": "Very Hard",
+    "hook": "Only 2% get this right",
+    "prompt": "Clock Reasoning",
+    "question": "A clock shows exactly 9:45. What is the angle between its hour hand and minute hand?",
+    "options": [
+      "0°",
+      "15°",
+      "7.5°",
+      "22.5°"
+    ],
+    "answer": 3,
+    "explanation": "22.5°, not 0°! At 9:45 the minute hand is on 9, but the hour hand has moved 3/4 of the way from 9 to 10: 45 x 0.5° = 22.5° past 9."
   }
 ]
