@@ -430,5 +430,21 @@
     ],
     "answer": 3,
     "explanation": "22.5°, not 0°! At 9:45 the minute hand is on 9, but the hour hand has moved 3/4 of the way from 9 to 10: 45 x 0.5° = 22.5° past 9."
+  },
+  {
+    "day": 28,
+    "category": "GK",
+    "difficulty": "Hard",
+    "hook": "Most people get this wrong",
+    "prompt": "General Knowledge",
+    "question": "Which country has the LONGEST coastline in the world?",
+    "options": [
+      "Australia",
+      "Russia",
+      "Canada",
+      "Indonesia"
+    ],
+    "answer": 2,
+    "explanation": "Canada, not Australia! With thousands of Arctic islands, Canada's coastline is about 202,080 km long, the longest of any country by far."
   }
 ]
