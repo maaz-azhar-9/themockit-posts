@@ -446,5 +446,21 @@
     ],
     "answer": 2,
     "explanation": "Canada, not Australia! With thousands of Arctic islands, Canada's coastline is about 202,080 km long, the longest of any country by far."
+  },
+  {
+    "day": 29,
+    "category": "Current Affairs",
+    "difficulty": "Medium",
+    "hook": "Can you get this in 10 sec?",
+    "prompt": "Current Affairs",
+    "question": "British author M. John Harrison just won the 2026 Booker Prize and became its OLDEST winner ever. How old is he?",
+    "options": [
+      "81 years",
+      "79 years",
+      "76 years",
+      "85 years"
+    ],
+    "answer": 0,
+    "explanation": "81! Harrison won for 'The End of Everything', beating Margaret Atwood's record (she was 79 when she won in 2019) (as of November 2026)."
   }
 ]
