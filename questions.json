@@ -462,5 +462,21 @@
     ],
     "answer": 0,
     "explanation": "81! Harrison won for 'The End of Everything', beating Margaret Atwood's record (she was 79 when she won in 2019) (as of November 2026)."
+  },
+  {
+    "day": 30,
+    "category": "Reasoning",
+    "difficulty": "Very Hard",
+    "hook": "Only 2% get this right",
+    "prompt": "Logic Puzzle",
+    "question": "A frog is at the bottom of a 20 m well. Every day it jumps up 5 m, every night it slips back 3 m. On which day does it get out?",
+    "options": [
+      "10th day",
+      "9th day",
+      "8th day",
+      "7th day"
+    ],
+    "answer": 1,
+    "explanation": "9th day, not 10th! After 8 days and nights it is at 16 m. On day 9 it jumps 5 m to 21 m and is out before it can slip back."
   }
 ]
