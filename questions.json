@@ -478,5 +478,21 @@
     ],
     "answer": 1,
     "explanation": "9th day, not 10th! After 8 days and nights it is at 16 m. On day 9 it jumps 5 m to 21 m and is out before it can slip back."
+  },
+  {
+    "day": 31,
+    "category": "GK",
+    "difficulty": "Hard",
+    "hook": "Most people get this wrong",
+    "prompt": "General Knowledge",
+    "question": "Which country has the MOST ancient pyramids in the world?",
+    "options": [
+      "Egypt",
+      "Mexico",
+      "Peru",
+      "Sudan"
+    ],
+    "answer": 3,
+    "explanation": "Sudan, not Egypt! Ancient Nubian kings built over 200 smaller, steeper pyramids at sites like Meroe, roughly twice Egypt's count of about 120."
   }
 ]
