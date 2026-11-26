@@ -494,5 +494,21 @@
     ],
     "answer": 3,
     "explanation": "Sudan, not Egypt! Ancient Nubian kings built over 200 smaller, steeper pyramids at sites like Meroe, roughly twice Egypt's count of about 120."
+  },
+  {
+    "day": 32,
+    "category": "Maths",
+    "difficulty": "Medium",
+    "hook": "Can you get this in 10 sec?",
+    "prompt": "Quick Maths",
+    "question": "Rahul is 20 years old and his brother is half his age. When Rahul turns 50, how old will his brother be?",
+    "options": [
+      "25 years",
+      "35 years",
+      "40 years",
+      "30 years"
+    ],
+    "answer": 2,
+    "explanation": "40, not 25! The age gap never changes. The brother is 10 now, 10 years younger, so when Rahul is 50 he will be 40."
   }
 ]
