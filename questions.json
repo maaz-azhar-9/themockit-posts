@@ -510,5 +510,21 @@
     ],
     "answer": 2,
     "explanation": "40, not 25! The age gap never changes. The brother is 10 now, 10 years younger, so when Rahul is 50 he will be 40."
+  },
+  {
+    "day": 33,
+    "category": "Current Affairs",
+    "difficulty": "Very Hard",
+    "hook": "Only 2% get this right",
+    "prompt": "Current Affairs",
+    "question": "The new TOP500 list (Nov 2026) is out. Which is now the world's FASTEST supercomputer?",
+    "options": [
+      "El Capitan",
+      "LineShine",
+      "Frontier",
+      "JUPITER"
+    ],
+    "answer": 1,
+    "explanation": "LineShine, China's Shenzhen machine, holds No. 1 at about 2.2 exaflops, ahead of America's El Capitan (as of November 2026)."
   }
 ]
