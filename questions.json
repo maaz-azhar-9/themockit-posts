@@ -526,5 +526,21 @@
     ],
     "answer": 1,
     "explanation": "LineShine, China's Shenzhen machine, holds No. 1 at about 2.2 exaflops, ahead of America's El Capitan (as of November 2026)."
+  },
+  {
+    "day": 34,
+    "category": "Reasoning",
+    "difficulty": "Hard",
+    "hook": "Most people get this wrong",
+    "prompt": "Find the odd one out",
+    "question": "169,  289,  225,  361",
+    "options": [
+      "361",
+      "169",
+      "225",
+      "289"
+    ],
+    "answer": 2,
+    "explanation": "225! All four are perfect squares, but 13², 17² and 19² are squares of PRIME numbers. 225 = 15², and 15 is not prime."
   }
 ]
